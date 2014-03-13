@@ -1,2 +1,4 @@
 .vagrant
 sickbeard-data
+!sickbeard-data/Dockerfile
+!sickbeard-data/config.ini
