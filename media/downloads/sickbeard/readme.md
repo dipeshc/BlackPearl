@@ -1,0 +1,1 @@
+This directory is used to hold files that have been downloaded and are waiting to be processed by sickbeard.
