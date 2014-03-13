@@ -1,4 +1,11 @@
 .vagrant
+
+# Media directory
+media
+!media/readme.md
+!media/tv/readme.md
+
+# Sickbeard
 sickbeard-data
 !sickbeard-data/Dockerfile
 !sickbeard-data/config.ini

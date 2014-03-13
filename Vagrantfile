@@ -7,5 +7,5 @@ Vagrant.configure("2") do |config|
   
   # Sickbeard
   config.vm.provision "shell",
-    inline: "docker build -t sickbeard /vagrant/sickbeard-data && docker run -d -p 8081:8081 -v /vagrant/sickbeard-data:/sickbeard-data sickbeard"
+    inline: "docker build -t sickbeard /vagrant/sickbeard-data && docker run -d -p 8081:80 -v /vagrant/sickbeard-data:/sickbeard-data -v /vagrant/media/tv:/tv sickbeard"
 end
