@@ -3,12 +3,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision "docker",
     images: ["ubuntu"]
   
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
   config.vm.network "forwarded_port", guest: 8081, host: 8081
- 
-  # Utorrent
+  config.vm.network "forwarded_port", guest: 9091, host: 9091
+
+  # Transmission
   config.vm.provision "shell",
-    inline: "docker build -t utorrent /vagrant/utorrent && docker run -d -p 45000:6881 -p 8080:80  -v /vagrant/utorrent:/var/utorrent -v /vagrant/media/downloads:/media/downloads utorrent"
+    inline: "docker build -t transmission /vagrant/transmission && docker run -d -p 9091:80 -p 51413:51413  -v /vagrant/transmission:/var/transmission -v /vagrant/media/downloads:/media/downloads transmission"
  
   # Sickbeard
   config.vm.provision "shell",

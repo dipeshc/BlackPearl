@@ -1,16 +1,5 @@
 .vagrant
 
-# Media directory
 media
-!media/readme.md
-!media/tv/readme.md
-
-# Sickbeard
 sickbeard
-!sickbeard/Dockerfile
-!sickbeard/config.ini
-
-# Utorrent
-utorrent
-!utorrent/Dockerfile
-!utorrent/config.ini
+transmission
