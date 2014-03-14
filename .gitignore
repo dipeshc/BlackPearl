@@ -6,6 +6,11 @@ media
 !media/tv/readme.md
 
 # Sickbeard
-sickbeard-data
-!sickbeard-data/Dockerfile
-!sickbeard-data/config.ini
+sickbeard
+!sickbeard/Dockerfile
+!sickbeard/config.ini
+
+# Utorrent
+utorrent
+!utorrent/Dockerfile
+!utorrent/config.ini
