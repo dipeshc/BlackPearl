@@ -1,17 +1,16 @@
-FROM geoffreyplitt/docker-sickbeard
+FROM ubuntu
 MAINTAINER Dipesh Chauhan dipesh@chauhan.net.au
 
-RUN apt-get install -y curl
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get upgrade
+RUN apt-get install -y curl git-core python-cheetah
 RUN curl https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python
-RUN mv my-sickbeard-install /opt/sickbeard
-RUN cd /opt/sickbeard && git remote set-url origin git://github.com/junalmeida/Sick-Beard.git
-RUN cd /opt/sickbeard && git fetch
-RUN cd /opt/sickbeard && git checkout -t origin/torrent_1080_subtitles
-RUN cd /opt/sickbeard && git clean -xfd
+RUN git clone git://github.com/junalmeida/Sick-Beard.git /opt/sickbeard -b torrent_1080_subtitles
 RUN mkdir /var/sickbeard
 RUN mkdir /media/tv
 RUN mkdir /media/downloads
 
-ENTRYPOINT cd /opt/sickbeard && python SickBeard.py --datadir=/var/sickbeard
+ENTRYPOINT /var/sickbeard/start.sh
 
 EXPOSE 8081
