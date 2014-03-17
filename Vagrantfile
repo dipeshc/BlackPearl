@@ -4,6 +4,9 @@ Vagrant.configure("2") do |config|
     images: ["ubuntu"]
 
   if Vagrant.has_plugin?("vagrant-cachier")
+    config.vm.network "private_network", ip: "192.168.50.4"
+    config.vm.synced_folder ".", "/vagrant", type: "nfs"
+
     config.cache.scope = :box
     config.cache.synced_folder_opts = {
       type: :nfs,
@@ -14,6 +17,11 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 8081, host: 8081
   config.vm.network "forwarded_port", guest: 9091, host: 9091
+  config.vm.network "forwarded_port", guest: 32400, host: 32400
+
+  # Plex
+  config.vm.provision "shell",
+    inline: "docker build -t blackperl/plex /vagrant/plex && docker run -d -p 32400:32400 -v /vagrant/plex/:/var/plex -v /vagrant/media:/media -name plex blackperl/plex"
 
   # Transmission
   config.vm.provision "shell",
@@ -25,6 +33,6 @@ Vagrant.configure("2") do |config|
 
   # Nginx
   config.vm.provision "shell",
-    inline: "docker build -t blackperl/nginx /vagrant/nginx && docker run -d -p 80:80 -v /vagrant/nginx:/var/nginx -link transmission:transmission -link sickbeard:sicbeard -name nginx blackperl/nginx"
+    inline: "docker build -t blackperl/nginx /vagrant/nginx && docker run -d -p 80:80 -v /vagrant/nginx:/var/nginx -link plex:plex -link transmission:transmission -link sickbeard:sickbeard -name nginx blackperl/nginx"
 
 end
