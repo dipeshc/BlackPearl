@@ -10,6 +10,6 @@ RUN mkdir /var/couchpotato
 RUN mkdir /media/movies
 RUN mkdir /media/downloads
 
-ENTRYPOINT python /opt/couchpotato/CouchPotato.py --data_dir /var/couchpotato
+ENTRYPOINT /var/couchpotato/start.sh
 
 EXPOSE 5050

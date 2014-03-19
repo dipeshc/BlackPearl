@@ -1,6 +1,6 @@
 #! /bin/sh
 
-rm -f /var/plex/Library/Application Support/Plex Media Server/plexmediaserver.pid
+rm -f "/var/plex/Library/Application Support/Plex Media Server/plexmediaserver.pid"
 
 mkdir -p /var/run/dbus
 chown messagebus:messagebus /var/run/dbus
